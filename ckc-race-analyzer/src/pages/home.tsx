@@ -1,6 +1,7 @@
 import { RaceAnalyzer } from '../components/Analyzer/Analyzer';
 import SEO from '../components/SEO/SEO';
 import bg from '../assets/svg/dotbg.svg';
+import MultiStepForm from '../components/MultiStepForm.js/MultistepForm';
 
 const Home = () => {
   return (
@@ -27,6 +28,8 @@ const Home = () => {
         <h1>CREATED BY DELPDESIGN</h1>
         </div>
       </div>
+
+      <MultiStepForm />
     </div>
   );
 };
