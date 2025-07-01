@@ -1,5 +1,4 @@
 import React from 'react';
-import styles from './Button.module.css';
 
 interface ButtonProps {
   text: string;
@@ -10,7 +9,7 @@ interface ButtonProps {
 const Button: React.FC<ButtonProps> = ({ text, onClick, disabled = false }) => {
   
   return (
-    <button className={styles.button} onClick={onClick} disabled={disabled}>
+    <button className='button' onClick={onClick} disabled={disabled}>
       {text}
     </button>
   );

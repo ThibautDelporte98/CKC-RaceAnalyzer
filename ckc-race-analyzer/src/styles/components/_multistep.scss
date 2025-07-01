@@ -1,8 +1,58 @@
-.multistep{
+.multistep {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  &-item {
+    padding: 5rem 0;
+    .input {
+      width: 100%;
+      border-radius: 20px;
+      border: none;
+      box-shadow:
+        rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+        rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    }
+  }
+
+  &-timetable {
     width: 100%;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    max-width: 30rem;
+    height: 15rem;
+    padding: 0 1rem;
+    margin: 5rem 0;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    /* Custom scrollbar styles */
+    &::-webkit-scrollbar {
+      width: 4px; /* small width */
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent; /* no background */
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: rgba(0, 0, 0, 0.2); /* black with 50% transparency */
+      border-radius: 20px;
+    }
+  }
+  &-time {
+    .input {
+      width: 100%;
+      border-radius: 20px;
+      border: none;
+      box-shadow:
+        rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+        rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    }
+  }
+  &-nav {
+    width: 100%;
+    height: auto;
+    padding: 0 5rem;
+  }
 }

@@ -1,49 +1,54 @@
-// components/steps/Step3.tsx
 import React from 'react';
-import { FormData } from '../../types/FormData';
+import { FormData, StepInputField } from '../../types/FormData';
+import Button from '../Button/Button';
+import ButtonPrev from '../Button/ButtonPrev';
 
-interface StepProps {
+interface StepInputProps {
   nextStep: () => void;
   prevStep?: () => void;
   formData: FormData;
-  handleChange: (field: keyof FormData, value: string) => void;
+  handleChange: (field: StepInputField, value: string) => void;
+  field: StepInputField;
+  label: string;
+  placeholder?: string;
+  buttonDisabled?: boolean;
 }
 
-const Step2: React.FC<StepProps> = ({
+
+const StepInput: React.FC<StepInputProps> = ({
   nextStep,
   prevStep,
   formData,
   handleChange,
+  field,
+  label,
+  placeholder,
+  buttonDisabled,
 }) => {
   return (
     <div className="multistep">
-      <div className="mutlistep-item">
-        <h2 className="text-xl mb-4">Your position into the race</h2>
+      <div className="multistep-item">
+        <h2 className="text-xl mb-4">{label}</h2>
         <input
           type="text"
-          value={formData.Position}
-          onChange={(e) => handleChange('Position', e.target.value)}
-          className="border p-2 w-full"
+          value={
+            typeof formData[field] === 'number' ||
+            typeof formData[field] === 'string'
+              ? formData[field]
+              : ''
+          }
+          onChange={(e) => handleChange(field, e.target.value)}
+          className="input p-1"
+          placeholder={placeholder}
         />
       </div>
 
-      <div className="mutlistep-nav">
-
-        <button
-          onClick={prevStep}
-          className="mt-4 bg-blue-600 text-white p-2 rounded"
-        >
-          Prev
-        </button>
-        <button
-          onClick={nextStep}
-          className="mt-4 bg-blue-600 text-white p-2 rounded"
-        >
-          Next
-        </button>
+      <div className="flex-row space-between multistep-nav">
+        <ButtonPrev disabled={buttonDisabled} onClick={prevStep} />
+        <Button text="Volgende" onClick={nextStep} />
       </div>
     </div>
   );
 };
 
-export default Step2;
+export default StepInput;

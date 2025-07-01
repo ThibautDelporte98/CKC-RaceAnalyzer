@@ -1,24 +1,18 @@
 // components/MultiStepForm.tsx
 import React, { useState } from 'react';
 import { FormData } from '../../types/FormData';
-import Step1 from '../FormSteps/Step1';
-import Step2 from '../FormSteps/Step2';
-import Step3 from '../FormSteps/Step3';
-import Step4 from '../FormSteps/Step4';
-import Step5 from '../FormSteps/Step5';
-
-
-
+import StepInput from '../FormSteps/Step2';
+import StepIntervals from '../FormSteps/StepInterval';
 import Final from '../FormSteps/final';
 
 const MultiStepForm: React.FC = () => {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState<FormData>({
-    teams: '',
-    avgLapTime: 0,
+    totalTeams: 0,
+    timeLeader: 0,
     Position: 0,
     TimeInToTheRace: 0,
-    Interval: 0,
+    Interval: [],
   });
 
   const nextStep = () => setStep((prev) => prev + 1);
@@ -28,52 +22,72 @@ const MultiStepForm: React.FC = () => {
     setFormData({ ...formData, [field]: value });
   };
 
+  const handleChangeIntervals = (index: number, value: number) => {
+    const newIntervals = [...formData.Interval]; // copy existing array
+    newIntervals[index] = value; // update value at index
+    setFormData({ ...formData, Interval: newIntervals });
+  };
+  
+
   switch (step) {
     case 1:
       return (
-        <Step1
+        <StepInput
           nextStep={nextStep}
+          prevStep={prevStep}
           formData={formData}
           handleChange={handleChange}
+          field="timeLeader"
+          label="Lap Time Leader"
+          placeholder="Example. 74.324"
+          buttonDisabled
         />
       );
     case 2:
       return (
-        <Step2
+        <StepInput
           nextStep={nextStep}
           prevStep={prevStep}
           formData={formData}
           handleChange={handleChange}
+          field="Position"
+          label="Your position into the race"
+          placeholder="e.g. 1st"
         />
       );
     case 3:
       return (
-        <Step3
+        <StepInput
           nextStep={nextStep}
           prevStep={prevStep}
           formData={formData}
           handleChange={handleChange}
+          field="TimeInToTheRace"
+          label="How long are you in the race?"
+          placeholder="e.g. 14:37"
         />
       );
-      case 4:
-        return (
-          <Step4
-            nextStep={nextStep}
-            prevStep={prevStep}
-            formData={formData}
-            handleChange={handleChange}
-          />
-        );
-        case 5:
-            return (
-              <Step5
-                nextStep={nextStep}
-                prevStep={prevStep}
-                formData={formData}
-                handleChange={handleChange}
-              />
-            );
-
+    case 4:
+      return (
+        <StepInput
+          nextStep={nextStep}
+          prevStep={prevStep}
+          formData={formData}
+          handleChange={handleChange}
+          field="totalTeams"
+          label="Amount of teams"
+          placeholder="e.g 14"
+        />
+      );
+    case 5:
+      return (
+        <StepIntervals
+        nextStep={nextStep}
+        prevStep={prevStep}
+        formData={formData}
+        handleChangeIntervals={handleChangeIntervals} 
+        />
+      );
     case 6:
       return <Final prevStep={prevStep} formData={formData} />;
     default:
