@@ -1,0 +1,24 @@
+.bg-fixed{
+    position: fixed;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    padding: 2rem;
+    z-index: 0;
+}
+
+.bg{
+    width: auto;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  
+
+  @media screen and (max-width: 576px ) {
+    .bg{
+        width: 4rem;
+
+      }
+    
+}

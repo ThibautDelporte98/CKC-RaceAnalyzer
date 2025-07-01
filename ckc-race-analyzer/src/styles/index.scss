@@ -1,0 +1,24 @@
+@use 'settings/variables' as *;
+@use 'settings/typography' as *;
+
+@use 'layout/flexbox' as *;
+@use 'layout/grid' as *;
+@use 'layout/nav' as *;
+@use 'layout/bg' as *;
+@use 'layout/padding' as *;
+
+
+
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: $secondary-color;
+  font-family: $font-stack;
+}
+
