@@ -3,6 +3,7 @@ import { FormData, StepInputField } from '../../types/FormData';
 import Button from '../Button/Button';
 import ButtonPrev from '../Button/ButtonPrev';
 import { secondsToTimeString } from '../..//utils/formatTimeInput';
+import InputMask from 'react-input-mask';
 
 interface StepInputProps {
   nextStep: () => void;
@@ -15,8 +16,7 @@ interface StepInputProps {
   buttonDisabled?: boolean;
 }
 
-
-const StepInput: React.FC<StepInputProps> = ({
+const StepTimeRace: React.FC<StepInputProps> = ({
   nextStep,
   prevStep,
   formData,
@@ -30,18 +30,17 @@ const StepInput: React.FC<StepInputProps> = ({
     <div className="multistep">
       <div className="multistep-item">
         <h2 className="text-xl mb-4">{label}</h2>
-        <input
-  type="text"
-  value={
-    field === 'TimeInToTheRace' && typeof formData[field] === 'number'
-      ? secondsToTimeString(formData[field] as number)
-      : formData[field]
-  }
-  onChange={(e) => handleChange(field, e.target.value)}
-  className="input p-1"
-  placeholder={placeholder}
-/>
-
+        <InputMask
+          mask="99:99"
+          value={
+            field === 'TimeInToTheRace' && typeof formData[field] === 'number'
+              ? secondsToTimeString(formData[field] as number)
+              : formData[field]
+          }
+          onChange={(e) => handleChange(field, e.target.value)}
+          className="input p-1"
+          placeholder={placeholder}
+        />
       </div>
 
       <div className="flex-row space-between multistep-nav">
@@ -52,4 +51,4 @@ const StepInput: React.FC<StepInputProps> = ({
   );
 };
 
-export default StepInput;
+export default StepTimeRace;

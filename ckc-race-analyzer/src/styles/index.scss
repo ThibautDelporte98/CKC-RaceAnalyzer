@@ -6,6 +6,8 @@
 @use 'layout/nav' as *;
 @use 'layout/bg' as *;
 @use 'layout/padding' as *;
+@use 'layout/shapes' as *;
+@use 'layout/list' as *;
 @use 'components/multistep' as *;
 @use 'components/button' as *;
 
@@ -24,5 +26,11 @@
 body {
   background-color: $secondary-color;
   font-family: $font-stack;
+}
+
+.disabled {
+  opacity: 0.75;
+  pointer-events: none; /* disables mouse interactions */
+  cursor: default;      /* changes cursor to default arrow */
 }
 

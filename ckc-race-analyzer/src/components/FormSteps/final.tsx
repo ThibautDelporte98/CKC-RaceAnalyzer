@@ -18,6 +18,8 @@ interface StepProps {
       <div className=' multistep'>
         <h2 className="text-xl mb-4">Review Input</h2>
         <p><strong>Name:</strong> {formData.Position}</p>
+        <p><strong>Name:</strong> {formData.TimeInToTheRace}</p>
+
         <button onClick={prevStep} className="mt-4 mr-2 bg-gray-400 text-white p-2 rounded">
           Back
         </button>

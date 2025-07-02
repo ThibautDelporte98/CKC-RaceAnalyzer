@@ -1,4 +1,8 @@
+@use '../settings/variables' as *;
+
+
 .multistep {
+
   position: relative;
   width: 100%;
   height: 100vh;
@@ -6,29 +10,30 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 7.5rem 0;
   &-item {
     padding: 5rem 0;
     .input {
+      font-family: $font-stack;
+      text-align: center;
       width: 100%;
       border-radius: 20px;
       border: none;
-      box-shadow:
-        rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
-        rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+      box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
     }
   }
 
   &-timetable {
     width: 100%;
-    max-width: 30rem;
-    height: 15rem;
-    padding: 0 1rem;
-    margin: 5rem 0;
+    // max-width: 30rem;
+    height: auto;
+    padding: 2rem;
+    margin: 2rem 0;
     overflow-y: scroll;
     scroll-behavior: smooth;
     /* Custom scrollbar styles */
     &::-webkit-scrollbar {
-      width: 4px; /* small width */
+      width: 0; /* small width */
     }
 
     &::-webkit-scrollbar-track {
@@ -51,8 +56,18 @@
     }
   }
   &-nav {
+    position: absolute;
+    bottom: 20%;
     width: 100%;
     height: auto;
     padding: 0 5rem;
+  }
+}
+
+
+.pitstop{
+  img{
+    width: 1.5rem;
+    height: 1.5rem;
   }
 }

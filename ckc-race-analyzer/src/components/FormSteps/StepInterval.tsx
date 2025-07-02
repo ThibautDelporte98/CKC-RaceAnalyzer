@@ -2,12 +2,14 @@ import React from 'react';
 import { FormData } from '../../types/FormData';
 import Button from '../Button/Button';
 import ButtonPrev from '../Button/ButtonPrev';
+import Pitstop from '../../assets/svg/player.svg';
+import Kartstop from '../../assets/svg/formula.svg';
 
 interface StepIntervalsProps {
   nextStep: () => void;
   prevStep: () => void;
   formData: FormData;
-  handleChangeIntervals: (index: number, value: number) => void;
+  handleChangeIntervals: (index: number, value: string) => void; // string here
 }
 
 const StepIntervals: React.FC<StepIntervalsProps> = ({
@@ -18,23 +20,43 @@ const StepIntervals: React.FC<StepIntervalsProps> = ({
 }) => {
   return (
     <div className="multistep">
-      <h2 >Interval per team from leader</h2>
-      <div className="multistep-timetable">
+      <h2>Interval per team from leader</h2>
+      <ol className="multistep-timetable ">
         {Array.from({ length: formData.totalTeams }).map((_, index) => (
-          <div className="multistep-time" key={index} >
-            <label className=" mb-1">Team {index + 1}</label>
-            <input
-              type="text"
-              className="input p-1 w-full"
-              value={formData.Interval[index] ?? ''}
-              onChange={(e) =>
-                handleChangeIntervals(index, parseFloat(e.target.value) || 0)
-              }
-              placeholder={`e.g. +${(index + 1) * 1.2}s`}
-            />
-          </div>
+          <li className="multistep-time p-1" key={index}>
+            <div className="flex-row w-100 justify-center">
+              <div className="multistep-interval">
+                <label className=" mb-1"></label>
+                <input
+                  type="text"
+                  className="input p-1 w-full"
+                  value={
+                    index === 0
+                      ? formData.timeLeader.toString() // First input shows leader time
+                      : (formData.Interval[index] ?? '')
+                  }
+                  onChange={(e) =>
+                    index !== 0 && handleChangeIntervals(index, e.target.value)
+                  }
+                  placeholder={index === 0 ? undefined : `e.g. +74s`}
+                  disabled={index === 0} // Disable first input
+                />
+              </div>
+              <div className="stops flex-row-align gap-2">
+                <div className={`rounded-square pitstop ${index === 0 ? 'disabled' :  ' '}`}  >
+                  <img src={Pitstop} alt="" />
+                </div>
+                <div className={`rounded-square pitstop ${index === 0 ? 'disabled' :  ' '}`}  >
+                  <img src={Pitstop} alt="" />
+                </div>
+                <div className={`rounded-square pitstop ${index === 0 ? 'disabled' :  ' '}`}  >
+                  <img src={Kartstop} alt="" />
+                </div>
+              </div>
+            </div>
+          </li>
         ))}
-      </div>
+      </ol>
       <div className="flex-row space-between multistep-nav">
         <ButtonPrev onClick={prevStep} />
         <Button text="Volgende" onClick={nextStep} />
