@@ -6,6 +6,7 @@ import StepIntervals from '../FormSteps/StepInterval';
 import Final from '../FormSteps/final';
 import { timeStringToSeconds } from '../../utils/formatTime'; // adjust path if needed
 import StepTimeRace from '../FormSteps/StepTimeRace';
+import { showLoader, hideLoader } from '../../utils/loader';
 
 
 const MultiStepForm: React.FC = () => {
@@ -17,6 +18,7 @@ const MultiStepForm: React.FC = () => {
     TimeInToTheRace: 0,
     Interval: [], 
   });
+
   
 
   const nextStep = () => setStep((prev) => prev + 1);
@@ -49,7 +51,15 @@ const MultiStepForm: React.FC = () => {
   
   
 
+  const handleSubmit = async () => {
+    showLoader();
+    await new Promise((res) => setTimeout(res, 1500));
+    console.log('Final Data:', formData);
+    hideLoader();
+    setStep(6);
+  };
   
+
   
 
   switch (step) {
@@ -107,8 +117,9 @@ const MultiStepForm: React.FC = () => {
     case 5:
       return (
         <StepIntervals
-        nextStep={nextStep}
         prevStep={prevStep}
+        handleSubmit={handleSubmit}
+
         formData={formData}
         handleChangeIntervals={handleChangeIntervals} 
         />

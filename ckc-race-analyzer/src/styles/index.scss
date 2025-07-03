@@ -1,6 +1,6 @@
 @use 'settings/variables' as *;
 @use 'settings/typography' as *;
-
+@use 'settings/global' as *;
 @use 'layout/flexbox' as *;
 @use 'layout/grid' as *;
 @use 'layout/nav' as *;
@@ -30,7 +30,7 @@ body {
 
 .disabled {
   opacity: 0.75;
-  pointer-events: none; /* disables mouse interactions */
-  cursor: default;      /* changes cursor to default arrow */
+  pointer-events: none; 
+  cursor: default;     
 }
 
