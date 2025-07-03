@@ -1,4 +1,3 @@
-import { RaceAnalyzer } from '../components/Analyzer/Analyzer';
 import SEO from '../components/SEO/SEO';
 import bg from '../assets/svg/dotbg.svg';
 import MultiStepForm from '../components/MultiStepForm.js/MultistepForm';
