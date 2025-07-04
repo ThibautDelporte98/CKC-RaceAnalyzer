@@ -13,6 +13,7 @@ export type Position = {
 
 const TRACK_LENGTH = 1000; // meters
 
+
 const leader = {
   lapsDone: 12,
   lapTime: 90,

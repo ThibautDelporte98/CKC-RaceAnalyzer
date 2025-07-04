@@ -27,7 +27,6 @@ const Home = () => {
         <h1>CREATED BY DELPDESIGN</h1>
         </div>
       </div>
-
       <MultiStepForm />
     </div>
   );
